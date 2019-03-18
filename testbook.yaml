@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: True
+  become_method: sudo
+  become_user: root
+
+  tasks:
+   - name: Check the httpd status
+     service: httpd
+     stat: installed
+
+  vars_prompt:
+        - name: hostname
+        prompt: "Please enter the hostname:"
+       private: no
+      debug:
+        msg: "{{ hostname }}"
